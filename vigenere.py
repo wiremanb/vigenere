@@ -51,14 +51,14 @@ class vigenere_cipher:
                 k=-1;
             k=k+1;
             try:
-                print("[VIGENERE] -> Plain val: {0}".format(ALPHABET.index(p.upper())));
-                print("[VIGENERE] -> Key val: {0}".format(ALPHABET.index(KEY[k].upper())));
+                # print("[VIGENERE] -> Plain val: {0}".format(ALPHABET.index(p.upper())));
+                # print("[VIGENERE] -> Key val: {0}".format(ALPHABET.index(KEY[k].upper())));
                 if self.alphabetType.lower() == "s":
                     newVal = (ALPHABET.index(p.upper()) + ALPHABET.index(KEY[k].upper())) % MOD;
                 else:
                     newVal = (ALPHABET.index(p) + ALPHABET.index(KEY[k])) % MOD;
                 encryptedText = encryptedText + ALPHABET[newVal];
-                print(ALPHABET[newVal]);
+                # print(ALPHABET[newVal]);
             except:
                 continue;
         self.saveFile.write(encryptedText);
@@ -73,14 +73,14 @@ class vigenere_cipher:
                 k=-1;
             k=k+1;
             try:
-                print("[VIGENERE] -> Encrypted val: {0}".format(ALPHABET.index(p.upper())));
-                print("[VIGENERE] -> Key val: {0}".format(ALPHABET.index(KEY[k].upper())));
+                # print("[VIGENERE] -> Encrypted val: {0}".format(ALPHABET.index(p.upper())));
+                # print("[VIGENERE] -> Key val: {0}".format(ALPHABET.index(KEY[k].upper())));
                 if self.alphabetType.lower() == "s":
                     newVal = (ALPHABET.index(p.upper()) - ALPHABET.index(KEY[k].upper())) % MOD;
                 else:
                     newVal = (ALPHABET.index(p) - ALPHABET.index(KEY[k])) % MOD;
                 plainText = plainText + ALPHABET[newVal];
-                print(ALPHABET[newVal]);
+                # print(ALPHABET[newVal]);
             except:
                 continue;
         self.saveFile.write(plainText);
