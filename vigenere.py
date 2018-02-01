@@ -47,18 +47,15 @@ class vigenere_cipher:
         encryptedText = "";
         k=-1; # Cipher key iterable
         for p in PLAIN:
-            if(k==len(KEY)-1):
+            if(k==len(KEY)):
                 k=-1;
             k=k+1;
             try:
-                # print("[VIGENERE] -> Plain val: {0}".format(ALPHABET.index(p.upper())));
-                # print("[VIGENERE] -> Key val: {0}".format(ALPHABET.index(KEY[k].upper())));
                 if self.alphabetType.lower() == "s":
                     newVal = (ALPHABET.index(p.upper()) + ALPHABET.index(KEY[k].upper())) % MOD;
                 else:
                     newVal = (ALPHABET.index(p) + ALPHABET.index(KEY[k])) % MOD;
                 encryptedText = encryptedText + ALPHABET[newVal];
-                # print(ALPHABET[newVal]);
             except:
                 continue;
         self.saveFile.write(encryptedText);
@@ -73,14 +70,11 @@ class vigenere_cipher:
                 k=-1;
             k=k+1;
             try:
-                # print("[VIGENERE] -> Encrypted val: {0}".format(ALPHABET.index(p.upper())));
-                # print("[VIGENERE] -> Key val: {0}".format(ALPHABET.index(KEY[k].upper())));
                 if self.alphabetType.lower() == "s":
                     newVal = (ALPHABET.index(p.upper()) - ALPHABET.index(KEY[k].upper())) % MOD;
                 else:
                     newVal = (ALPHABET.index(p) - ALPHABET.index(KEY[k])) % MOD;
-                plainText = plainText + ALPHABET[newVal];
-                # print(ALPHABET[newVal]);
+                plainText += ALPHABET[newVal];
             except:
                 continue;
         self.saveFile.write(plainText);
@@ -138,17 +132,21 @@ def main():
     userInput = raw_input("[VIGENERE] -> Encrypt or Decrypt (E or D)? ");
     if userInput.lower() == "e":
         print("[VIGENERE] -> You are encrypting text...");
-        pt = raw_input("[VIGENERE] -> Enter plain text file name (ex: msg.txt): ");
-        ck = raw_input("[VIGENERE] -> Enter cipher key file name (ex: ct.txt): ");
-        sf = raw_input("[VIGENERE] -> Where do you want to save your encrypted text (ex: out.txt)? ");
+        # pt = raw_input("[VIGENERE] -> Enter plain text file name (ex: plaintext.txt): ");
+        pt = "plaintext.txt";
+        ck = raw_input("[VIGENERE] -> Enter cipher key file name (ex: vigenerekey.txt): ");
+        # sf = raw_input("[VIGENERE] -> Where do you want to save your encrypted text (ex: vigenerecipheroutput.txt)? ");
+        sf = "vigenerecipheroutput.txt";
         at = raw_input("[VIGENERE] -> Enter alphabet type (S or L): ");
         vig = vigenere_cipher(True, pt,sf,ck,at);
         print(vig.encrypt());
     else:
         print("[VIGENERE] -> You are decrypting text...");
-        et = raw_input("[VIGENERE] -> Enter encrypted text file name (ex: out.txt): ");
-        ck = raw_input("[VIGENERE] -> Enter cipher key file name (ex: ct.txt): ");
-        sf = raw_input("[VIGENERE] -> Where do you want to save your encrypted text (ex: out2.txt)? ");
+        # et = raw_input("[VIGENERE] -> Enter encrypted text file name (ex: blockaffinecipherplaintextoutput.txt): ");
+        et = "blockaffinecipherplaintextoutput.txt";
+        ck = raw_input("[VIGENERE] -> Enter cipher key file name (ex: vigenerekey.txt): ");
+        # sf = raw_input("[VIGENERE] -> Where do you want to save your encrypted text (ex: secondplaintext.txt)? ");
+        sf = "secondplaintext.txt";
         at = raw_input("[VIGENERE] -> Enter alphabet type (S or L): ");
         vig = vigenere_cipher(False, et,sf,ck,at);
         print(vig.decrypt());
